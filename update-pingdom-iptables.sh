@@ -23,7 +23,7 @@
 # Configuration
 IPTABLES=/sbin/iptables
 CHAIN=PINGDOM
-PORT=80
+PORT=3306
 FEED_URL=https://my.pingdom.com/probes/feed
 
 
