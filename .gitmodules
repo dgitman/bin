@@ -1,3 +1,6 @@
 [submodule "mysqltuner-perl"]
 	path = mysqltuner-perl
 	url = https://github.com/major/mysqltuner-perl
+[submodule "duplicity-backup"]
+	path = duplicity-backup
+	url = https://github.com/zertrin/duplicity-backup.git
