@@ -2,7 +2,7 @@
 
 git filter-branch --env-filter '
 
-OLD_EMAIL="your-old-email@example.com"
+OLD_EMAIL="dgitman"
 CORRECT_NAME="dgitman"
 CORRECT_EMAIL="dgitman@ndap-llc.com"
 
