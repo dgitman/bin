@@ -7,6 +7,6 @@
 [submodule "beautify_bash"]
 	path = beautify_bash
 	url = https://github.com/ewiger/beautify_bash.git
-[submodule "s3cmd"]
+[submodule "s3tools-s3cmd"]
 	path = s3tools-s3cmd
 	url = https://github.com/s3tools/s3cmd.git
