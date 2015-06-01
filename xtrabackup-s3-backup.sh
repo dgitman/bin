@@ -28,6 +28,7 @@ logWriteAfter() {
 # -----------------------------------------------------------------
 #  Run innobackupex (wrapper for xtrabackup)
 # -----------------------------------------------------------------
+
 countStart
 logWriteBefore "Started database backup"
 /usr/bin/innobackupex --compress --rsync /backups/database > /var/log/xtrabackup 2>&1
@@ -43,6 +44,7 @@ logWriteAfter "Completed database backup"
 # -----------------------------------------------------------------
 #  Remove backups older than 28 days
 # -----------------------------------------------------------------
+
 countStart
 logWriteBefore "Started database cleanup"
 
@@ -50,9 +52,11 @@ find /backups/database -prune -mtime +7 -exec rm -rf {} \;
 
 countEnd
 logWriteAfter "Completed database cleanup"
+
 # -----------------------------------------------------------------
 #  Sync to Smazon S3 Bucket
 # -----------------------------------------------------------------
+
 countStart
 logWriteBefore "Started Amazon S3 Sync"
 
