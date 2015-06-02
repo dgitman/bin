@@ -34,7 +34,7 @@ for db in $databases; do
 
   # Dump and zip
   echo -e "  creating \e[0;35m$tmpfile\e[00m"
-  mysqldump -u root -p$mysqlpass --force --opt --databases "$db" | gzip -c > "$tmpfile"
+  mysqldump --opt --max_allowed_packet=512M --databases "$db" | gzip -c > "$tmpfile"
 
   # Upload
   echo -e "  uploading..."
