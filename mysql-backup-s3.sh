@@ -13,7 +13,7 @@ echo -e " "
 bucket="s3://ndap-etl-database-backup"
 
 # Timestamp (sortable AND readable)
-stamp=`date +"%s - %A %d %B %Y @ %H%M"`
+stamp=`date --rfc-3339=seconds`
 
 # List all the databases
 databases=`mysql -e "SHOW DATABASES;" | tr -d "| " | grep -v "\(Database\|information_schema\|performance_schema\|mysql\|test\)"`
@@ -31,10 +31,19 @@ for db in $databases; do
 
   # Feedback
   echo -e "\e[1;34m$db\e[00m"
+  
+    # List all the tables
+  tables=`mysql $db -u root -p$mysqlpass -e "SHOW TABLES;" | tr -d "| "`
+ 
+  for tb in $tables; do
+    # Define our filenames
+    filename="$db.$tb.sql.gz"
+    tmpfile="/tmp/$filename"
+    object="$bucket/$stamp/$filename"
 
   # Dump and zip
   echo -e "  creating \e[0;35m$tmpfile\e[00m"
-  mysqldump --opt --max_allowed_packet=512M --databases "$db" | gzip -c > "$tmpfile"
+  mysqldump --opt --max_allowed_packet=512M --databases "$db" --table "$tb" | gzip -c > "$tmpfile"
 
   # Upload
   echo -e "  uploading..."
