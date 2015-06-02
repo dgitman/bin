@@ -8,6 +8,8 @@
 #  Describing variables
 # -----------------------------------------------------------------
 
+TMPFILE="/tmp/innobackupex.$$.tmp"
+
 countStart() {
         before="$(date +%s)"
 }
@@ -31,7 +33,7 @@ logWriteAfter() {
 
 countStart
 logWriteBefore "Started database backup"
-/usr/bin/innobackupex --compress --rsync /backups/database > /var/log/xtrabackup 2>&1
+/usr/bin/innobackupex --compress --rsync /backups/database > $TMPFILE 2>&1
 
 if [ -z "`tail -1 $TMPFILE | grep 'completed OK!'`" ] 
  then
