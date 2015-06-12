@@ -10,3 +10,6 @@
 [submodule "s3tools-s3cmd"]
 	path = s3tools-s3cmd
 	url = https://github.com/s3tools/s3cmd.git
+[submodule "colinmollenhour_modman"]
+	path = colinmollenhour_modman
+	url = https://github.com/colinmollenhour/modman
