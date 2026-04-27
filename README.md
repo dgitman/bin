@@ -21,7 +21,7 @@ source ~/.zshrc
 | Command | Purpose |
 | --- | --- |
 | `aws_s3_list_all_bucket_sizes.sh` | Print S3 bucket sizes using `s3cmd`. |
-| `curl-format-example.sh [url]` | Run `curl` with the bundled timing format file. |
+| `curl-format-example.py [url]` | Run `curl` with the bundled timing format file. |
 | `dump-tables-mysql.sh <host> <user> <database> [dir]` | Dump each table in a MySQL database into its own compressed SQL file. |
 | `file2folder.sh` | Move each file in the current directory into a same-named folder. |
 | `import-files-mysql.sh <host> <user> <database> [dir]` | Import `.sql.gz` files into a MySQL database. |
