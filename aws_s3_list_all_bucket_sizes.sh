@@ -1,13 +1,19 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 # ------------------------------------------------------------------
 #                  AWS S3 List All Bucket Sizes
-#        This lists the total size of all Aamazon Web Services S3 buckets using s3cmd
+#        List total size for all Amazon Web Services S3 buckets using s3cmd.
 # ------------------------------------------------------------------
-buckets=`s3cmd ls | awk '{FS=" ";print $3}'`
-for bucket in $buckets
-do
-  size=`s3cmd du "$bucket" |awk '{FS=" ";print $1}'`
-  sizemb=`expr $size / \\( 1024 \\* 1024 \\)`
-  sizegb=`expr $sizemb / 1024`
-  echo "$bucket ${sizegb} GB ${sizemb} MB ${size} bytes"
+
+command -v s3cmd >/dev/null 2>&1 || {
+  echo "s3cmd is required but was not found in PATH." >&2
+  exit 127
+}
+
+s3cmd ls | awk '{print $3}' | while IFS= read -r bucket; do
+  [ -n "$bucket" ] || continue
+  size=$(s3cmd du "$bucket" | awk '{print $1}')
+  sizemb=$((size / 1024 / 1024))
+  sizegb=$((sizemb / 1024))
+  printf '%s %s GB %s MB %s bytes\n' "$bucket" "$sizegb" "$sizemb" "$size"
 done
