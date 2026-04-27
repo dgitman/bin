@@ -1,11 +1,27 @@
-#!/usr/bin/env bash
-set -euo pipefail
-# ------------------------------------------------------------------
-#                  curl Format Example
-#        Make curl display transfer information after a completed request.
-# ------------------------------------------------------------------
+#!/usr/bin/env python3
+"""Run curl with the bundled transfer timing format file."""
 
-script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
-url=${1:-https://wordpress.com/}
+from pathlib import Path
+import subprocess
+import sys
 
-curl -w "@$script_dir/curl-format.txt" -o /dev/null -sS "$url"
+
+def main() -> int:
+    script_dir = Path(__file__).resolve().parent
+    url = sys.argv[1] if len(sys.argv) > 1 else "https://wordpress.com/"
+
+    return subprocess.call(
+        [
+            "curl",
+            "-w",
+            f"@{script_dir / 'curl-format.txt'}",
+            "-o",
+            "/dev/null",
+            "-sS",
+            url,
+        ]
+    )
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
