@@ -4,7 +4,7 @@ Personal scripts and command-line helpers.
 
 ## Setup
 
-Run this once so scripts in `~/bin` are available from any new terminal:
+Run this once so scripts in `~/bin` and `~/.config/brewfile` are available from any new terminal:
 
 ```sh
 ~/bin/setup-bin-path.sh
@@ -22,14 +22,11 @@ source ~/.zshrc
 | --- | --- |
 | `aws-s3-list-all-bucket-sizes.sh` | Print S3 bucket sizes using `s3cmd`. |
 | `beautify_bash.py` | Reformat a bash script for readability. |
-| `brewfile-cleanup-preview` | Preview Homebrew packages that would be removed by a Brewfile cleanup. |
-| `brewfile-update` | Update installed Homebrew packages to match the Brewfile. |
 | `curl-format-example.sh [url]` | Run `curl` with the bundled timing format file. |
 | `dump-tables-mysql.sh <host> <user> <database> [dir]` | Dump each table in a MySQL database into its own compressed SQL file. |
 | `duplicity-backup.sh` | Run Duplicity encrypted backups (via submodule). |
 | `file2folder.sh` | Move each file in the current directory into a same-named folder. |
 | `import-files-mysql.sh <host> <user> <database> [dir]` | Import `.sql.gz` files into a MySQL database. |
-| `mac-bootstrap` | Install apps via Homebrew from the Brewfile on a fresh Mac. |
 | `modman` | Magento module manager (via submodule). |
 | `mysql-backup-s3.sh` | Back up all MySQL databases per-table to Amazon S3. |
 | `mysql-dbs-restore.sh` | Restore multiple MySQL databases from `.sql` files (filename = db name). |

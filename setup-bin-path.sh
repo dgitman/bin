@@ -1,32 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bin_dir="$HOME/bin"
 zshrc="$HOME/.zshrc"
-marker="# Add ~/bin to PATH"
-
-if [[ ! -d "$bin_dir" ]]; then
-  echo "Missing $bin_dir"
-  exit 1
-fi
-
 touch "$zshrc"
 
-if grep -Fq "$marker" "$zshrc" || grep -Eq '(^|:|\")(\$HOME|~|/Users/dgitman)/bin(:|\"|$)' "$zshrc"; then
-  echo "$bin_dir is already configured in $zshrc"
-  exit 0
-fi
+add_to_path() {
+  local dir="$1"
+  local marker="$2"
 
-cat >> "$zshrc" <<'EOF'
+  if [[ ! -d "$dir" ]]; then
+    echo "Missing $dir — skipping"
+    return
+  fi
 
-# Add ~/bin to PATH
-if [ -d "$HOME/bin" ]; then
-  case ":$PATH:" in
-    *":$HOME/bin:"*) ;;
-    *) export PATH="$HOME/bin:$PATH" ;;
+  if grep -Fq "$marker" "$zshrc"; then
+    echo "$dir is already configured in $zshrc"
+    return
+  fi
+
+  cat >> "$zshrc" <<EOF
+
+$marker
+if [ -d "$dir" ]; then
+  case ":\$PATH:" in
+    *":$dir:"*) ;;
+    *) export PATH="$dir:\$PATH" ;;
   esac
 fi
 EOF
+  echo "Added $dir to PATH in $zshrc"
+}
 
-echo "Added $bin_dir to PATH in $zshrc"
+add_to_path "$HOME/bin"               "# Add ~/bin to PATH"
+add_to_path "$HOME/.config/brewfile"  "# Add ~/.config/brewfile to PATH"
+
 echo "Restart your terminal or run: source ~/.zshrc"
