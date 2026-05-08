@@ -32,6 +32,6 @@ EOF
 }
 
 add_to_path "$HOME/bin"               "# Add ~/bin to PATH"
-add_to_path "$HOME/.config/brewfile"  "# Add ~/.config/brewfile to PATH"
+add_to_path "$HOME/Developer/dotfiles/brew"  "# Add ~/Developer/dotfiles/brew to PATH"
 
 echo "Restart your terminal or run: source ~/.zshrc"

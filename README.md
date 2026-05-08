@@ -4,7 +4,7 @@ Personal scripts and command-line helpers.
 
 ## Setup
 
-Run this once so scripts in `~/bin` and `~/.config/brewfile` are available from any new terminal:
+Run this once so scripts in `~/bin` and `~/Developer/dotfiles/brew` are available from any new terminal:
 
 ```sh
 ~/bin/setup-bin-path.sh
