@@ -31,7 +31,7 @@ EOF
   echo "Added $dir to PATH in $zshrc"
 }
 
-add_to_path "$HOME/bin"               "# Add ~/bin to PATH"
+add_to_path "$HOME/.local/bin"               "# Add ~/.local/bin to PATH"
 add_to_path "$HOME/dotfiles/brew"  "# Add ~/dotfiles/brew to PATH"
 
 echo "Restart your terminal or run: source ~/.zshrc"
